@@ -1,5 +1,5 @@
 /**
- * Defines a data model for a marble trading network
+ * Defines a data model for a ballot management network
  */
 namespace org.hyperledger_composer.ballots
 
