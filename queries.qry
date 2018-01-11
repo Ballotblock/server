@@ -1,0 +1,24 @@
+/**
+ * New query file
+ */
+
+query getVoterBallots{
+  description: "Select all the ballots that are associated with a voter"
+  statement:
+  	SELECT  org.hyperledger_composer.ballots.Ballot
+  		WHERE (voter == _$voter)
+}
+
+query getElectionBallots {
+  description: "Select all the ballots that are associated with an election"
+  statement:
+  	SELECT org.hyperledger_composer.ballots.Ballot
+  		WHERE (election == _$election)
+}
+
+query getOrganizerElections {
+  description: "Select all the elections that an organizer has created"
+  statement:
+  	SELECT org.hyperledger_composer.ballots.Election
+  		WHERE(organizer == _$organizer)
+}

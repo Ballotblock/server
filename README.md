@@ -1,2 +1,1 @@
-# server
-RESTful API / Backend Server for Ballotblock
+# org.ballots
