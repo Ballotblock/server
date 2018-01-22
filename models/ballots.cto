@@ -3,48 +3,42 @@
  */
 namespace org.hyperledger_composer.ballots
 
-concept Proposition  {
+concept proposition  {
   o String question
   o String[] choices
 }
 
-asset Election identified by electionId{
+asset elections identified by electionId{
   o String electionId
-  --> Organizer organizer
-  o Proposition[] propositions
+  --> organizers organizer
+  o proposition[] propositions
   o DateTime startDate
   o DateTime endDate
 }
 
-asset Ballot identified by ballotId {
+asset ballots identified by ballotId {
   o String ballotId
- 	--> Voter voter
-    --> Election election
+ 	--> voters voter
+  --> elections election
   o Boolean marked
   o Integer[] selections
 }
 
-
-participant Voter identified by voterId {
+participant voters identified by voterId {
   o String voterId
 }
 
-participant Organizer identified by organizerId {
+participant organizers identified by organizerId {
   o String organizerId
 }
 
-transaction castVote {
-  --> Ballot unmarkedBallot
+transaction vote {
+  --> ballots unmarkedBallot
   o Integer[] answers
 }
 
-transaction subElection {
-  --> Voter voter
-  --> Election election
-}
-
-// demo creates some participants as well as elections
-// This is for a demo purpose to show that voters can subscribe to elections and cast their votes
-transaction demo{
+transaction subscribe {
+  --> voters voter
+  --> elections election
 }
 
