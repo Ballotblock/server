@@ -1,0 +1,7 @@
+
+query getVoterBallots {
+  description: "Allow a voter to find all ballots they have"
+  statement: 
+    SELECT org.hyperledger_composer.ballots.ballots 
+      WHERE (voter == _$voter)
+}
