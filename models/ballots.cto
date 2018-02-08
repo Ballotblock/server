@@ -21,6 +21,8 @@ asset ballots identified by ballotId {
  	--> voters voter
   --> elections election
   o Boolean marked
+  o DateTime startDate
+  o DateTime endDate
   o Integer[] selections
 }
 
@@ -37,7 +39,7 @@ transaction vote {
   o Integer[] answers
 }
 
-transaction subscribe {
+transaction subscription {
   --> voters voter
   --> elections election
 }

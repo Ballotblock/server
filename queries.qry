@@ -1,7 +1,14 @@
 
 query getVoterBallots {
-  description: "Allow a voter to find all ballots they have"
+  description: "Returns all the ballots for a given voter"
   statement: 
     SELECT org.hyperledger_composer.ballots.ballots 
       WHERE (voter == _$voter)
+}
+
+query getElectionBallots{
+  description: "Returns all the ballots for the given election"
+  statement:
+    SELECT org.hyperledger_composer.ballots.ballots
+      WHERE (election == _$election)
 }
