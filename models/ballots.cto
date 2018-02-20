@@ -1,0 +1,46 @@
+/**
+ * Defines a data model for a ballot management network
+ */
+namespace org.hyperledger_composer.ballots
+
+concept proposition  {
+  o String question
+  o String[] choices
+}
+
+asset elections identified by electionId{
+  o String electionId
+  --> organizers organizer
+  o proposition[] propositions
+  o DateTime startDate
+  o DateTime endDate
+}
+
+asset ballots identified by ballotId {
+  o String ballotId
+ 	--> voters voter
+  --> elections election
+  o Boolean marked
+  o DateTime startDate
+  o DateTime endDate
+  o Integer[] selections
+}
+
+participant voters identified by voterId {
+  o String voterId
+}
+
+participant organizers identified by organizerId {
+  o String organizerId
+}
+
+transaction vote {
+  --> ballots unmarkedBallot
+  o Integer[] answers
+}
+
+transaction subscription {
+  --> voters voter
+  --> elections election
+}
+
