@@ -14,15 +14,13 @@ asset elections identified by electionId{
   o proposition[] propositions
   o DateTime startDate
   o DateTime endDate
+  o Integer [] results
 }
 
 asset ballots identified by ballotId {
   o String ballotId
  	--> voters voter
   --> elections election
-  o Boolean marked
-  o DateTime startDate
-  o DateTime endDate
   o Integer[] selections
 }
 
@@ -35,7 +33,8 @@ participant organizers identified by organizerId {
 }
 
 transaction vote {
-  --> ballots unmarkedBallot
+  --> voters voter
+  --> elections election
   o Integer[] answers
 }
 

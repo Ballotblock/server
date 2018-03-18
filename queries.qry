@@ -10,5 +10,27 @@ query getElectionBallots{
   description: "Returns all the ballots for the given election"
   statement:
     SELECT org.hyperledger_composer.ballots.ballots
-      WHERE (election == _$election)
+      WHERE ( (election == _$election))
+}
+
+query getPastElections{
+  description: "Returns all the ballots for an election that have passed the data parameter"
+  statement:
+    SELECT org.hyperledger_composer.ballots.elections
+      WHERE (endDate < _$date)
+}
+
+
+query getCurrentElections{
+  description: "Returns all the elections with startDate before the data parameter and endDate after"
+  statement:
+      SELECT org.hyperledger_composer.ballots.elections
+      WHERE ( (startDate < _$date) AND (endDate > _$date) )
+}
+
+query getUpCommingElections{
+  description: "Returns all the ballots for an election with startDate after the data parameter"
+  statement:
+    SELECT org.hyperledger_composer.ballots.elections
+      WHERE  (startDate < _$date) 
 }
